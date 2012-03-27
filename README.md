@@ -1,19 +1,21 @@
-homebrew-avr
+Homebrew-avr
 ============
 This repository contains the GNU AVR toolchain as formulae for [Homebrew](https://github.com/mxcl/homebrew).
 
 AVR is a popular family of microcontrollers, used for example in the [Arduino](http://arduino.cc) project.
 
-Installing homebrew-avr Formulae
+Installing Homebrew-avr Formulae
 --------------------------------
-Just `brew tap larsimmisch/avr` and then `brew install avr-libc`.
+Just `brew tap larsimmisch/avr` and then `brew install <formula>`.
 
-This will install avr-libc, avr-gcc and avr-binutils.
+To install the entire AVR toolchain, do:
+`brew install avr-gcc`
+`brew install avr-libc`
 
 You can also install via URL:
 
 ```
-brew install https://raw.github.com/adamv/homebrew-avr/master/avr-libc.rb
+brew install https://raw.github.com/larsimmisch/homebrew-avr/master/<formula>.rb
 ```
 
 Docs
