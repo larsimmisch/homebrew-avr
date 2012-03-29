@@ -9,8 +9,9 @@ Installing Homebrew-avr Formulae
 Just `brew tap larsimmisch/avr` and then `brew install <formula>`.
 
 To install the entire AVR toolchain, do:
-`brew install avr-gcc`
 `brew install avr-libc`
+
+This will pull in the prerequisites avr-binutils and avr-gcc.
 
 You can also install via URL:
 
