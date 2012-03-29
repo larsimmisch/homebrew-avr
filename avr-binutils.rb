@@ -19,15 +19,6 @@ class AvrBinutils < Formula
             "--disable-werror",
             "--disable-nls"]
 
-    unless ARGV.include? '--without-libiberty'
-      Dir.chdir "libiberty" do
-        ohai "building libiberty"
-        system "./configure", "--enable-install-libiberty", *args
-        system "make"
-        system "make install"
-      end
-    end
-
     unless ARGV.include? '--without-libbfd'
       Dir.chdir "bfd" do
         ohai "building libbfd"

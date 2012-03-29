@@ -74,6 +74,13 @@ class AvrGcc < Formula
       # deja-gnu and autogen formulae must be installed in order to do this.
 
       system 'make install'
+
+      multios = `gcc --print-multi-os-dir`.chomp
+
+      # binutils already has a libiberty.a. We remove ours, because
+      # otherwise, the symlinking of the keg fails
+      File.unlink "#{prefix}/lib/#{multios}/libiberty.a"
+
     end
   end
 end
