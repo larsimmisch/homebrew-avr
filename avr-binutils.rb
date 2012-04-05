@@ -5,6 +5,10 @@ class AvrBinutils < Formula
   homepage 'http://www.gnu.org/software/binutils/binutils.html'
   md5 'ee0f10756c84979622b992a4a61ea3f5'
 
+  def options
+    [["--disable-libbfd", "Disable installation of libbfd."]]
+  end
+
   def install
 
     if MacOS.lion?
@@ -19,7 +23,7 @@ class AvrBinutils < Formula
             "--disable-werror",
             "--disable-nls"]
 
-    unless ARGV.include? '--without-libbfd'
+    unless ARGV.include? '--disable-libbfd'
       Dir.chdir "bfd" do
         ohai "building libbfd"
         system "./configure", "--enable-install-libbfd", *args
