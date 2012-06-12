@@ -40,7 +40,7 @@ class AvrGcc < Formula
     ENV.delete 'RANLIB'
 
     if MacOS.lion?
-      ENV['CC'] = 'clang'
+      ENV['CC'] = 'llvm-gcc'
     end
 
     args = [
