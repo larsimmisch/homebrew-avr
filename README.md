@@ -6,7 +6,7 @@ AVR is a popular family of microcontrollers, used for example in the [Arduino](h
 
 Installing Homebrew-avr Formulae
 --------------------------------
-Just `brew tap larsimmisch/avr` and then `brew install <formula>`.
+Just `brew tap 0xPIT/avr` and then `brew install <formula>`.
 
 To install the entire AVR toolchain, do:
 `brew install avr-libc`
