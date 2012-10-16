@@ -16,7 +16,7 @@ This will pull in the prerequisites avr-binutils and avr-gcc.
 You can also install via URL:
 
 ```
-brew install https://raw.github.com/larsimmisch/homebrew-avr/master/<formula>.rb
+brew install https://raw.github.com/0xPIT/homebrew-avr/master/<formula>.rb
 ```
 
 Docs
