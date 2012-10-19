@@ -4,6 +4,15 @@ This repository contains the GNU AVR toolchain as formulae for [Homebrew](https:
 
 AVR is a popular family of microcontrollers, used for example in the [Arduino](http://arduino.cc) project.
 
+	
+Current Versions
+----------------
+- gcc 4.7.2
+- binutils 2.22
+- avr-libc 1.8.0
+
+Dependencies: 'gmp', 'libmpc', 'mpfr' will be installed with gcc.
+
 Installing Homebrew-avr Formulae
 --------------------------------
 Just `brew tap larsimmisch/avr` and then `brew install <formula>`.
