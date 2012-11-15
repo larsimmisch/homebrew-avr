@@ -1,18 +1,17 @@
 require 'formula'
 
 class AvrBinutils < Formula
-  url 'http://ftp.gnu.org/gnu/binutils/binutils-2.22.tar.bz2'
+  url 'http://ftpmirror.gnu.org/binutils/binutils-2.23.1.tar.bz2'
+  mirror 'http://ftp.gnu.org/gun/binutils/binutils-2.23.1.tar.bz2'
   homepage 'http://www.gnu.org/software/binutils/binutils.html'
-  md5 'ee0f10756c84979622b992a4a61ea3f5'
+  sha1 '587fca86f6c85949576f4536a90a3c76ffc1a3e1'
 
-  def options
-    [["--disable-libbfd", "Disable installation of libbfd."]]
-  end
+  option 'disable-libbfd', 'Disable installation of libbfd.'
 
   def install
 
-    if MacOS.lion?
-      ENV['CC'] = 'clang'
+    if MacOS.version == :lion
+      ENV['CC'] = '#{ENV.cc}'
     end
 
     ENV['CPPFLAGS'] = "-I#{include}"
@@ -23,7 +22,7 @@ class AvrBinutils < Formula
             "--disable-werror",
             "--disable-nls"]
 
-    unless ARGV.include? '--disable-libbfd'
+    unless build.include? 'disable-libbfd'
       Dir.chdir "bfd" do
         ohai "building libbfd"
         system "./configure", "--enable-install-libbfd", *args
@@ -39,8 +38,8 @@ class AvrBinutils < Formula
     ENV.delete 'CC'
     ENV.delete 'CXX'
 
-    if MacOS.lion?
-      ENV['CC'] = 'clang'
+    if MacOS.version == :lion
+      ENV['CC'] = '#{ENV.cc}'
     end
 
     system "./configure", "--target=avr", *args
