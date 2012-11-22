@@ -11,7 +11,7 @@ class AvrBinutils < Formula
   def install
 
     if MacOS.version == :lion
-      ENV['CC'] = '#{ENV.cc}'
+      ENV['CC'] = ENV.cc
     end
 
     ENV['CPPFLAGS'] = "-I#{include}"
@@ -39,7 +39,7 @@ class AvrBinutils < Formula
     ENV.delete 'CXX'
 
     if MacOS.version == :lion
-      ENV['CC'] = '#{ENV.cc}'
+      ENV['CC'] = ENV.cc
     end
 
     system "./configure", "--target=avr", *args
