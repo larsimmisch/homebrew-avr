@@ -23,9 +23,6 @@ class AvrGcc < Formula
     ]
   end
 
-  # Dont strip compilers.
-  skip_clean :all
-
   def install
     gmp = Formula.factory 'gmp'
     mpfr = Formula.factory 'mpfr'
