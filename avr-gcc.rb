@@ -72,7 +72,7 @@ class AvrGcc < Formula
 
       system 'make install'
 
-      multios = `gcc --print-multi-os-dir`.chomp
+      multios = `gcc --print-multi-os-directory`.chomp
 
       # binutils already has a libiberty.a. We remove ours, because
       # otherwise, the symlinking of the keg fails
