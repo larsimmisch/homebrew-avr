@@ -5,7 +5,7 @@ class AvrLibc < Formula
   homepage 'http://www.nongnu.org/avr-libc/'
   sha1 '2e3815221be8e22f5f2c07b922ce92ecfa85bade'
 
-  depends_on 'larsimmisch/avr/avr-gcc'
+  depends_on 'avr-gcc'
 
   def install
     # brew's build environment is in our way
@@ -15,7 +15,7 @@ class AvrLibc < Formula
     ENV.delete 'CC'
     ENV.delete 'CXX'
 
-    avr_gcc = Formula.factory('larsimmisch/avr/avr-gcc')
+    avr_gcc = Formula.factory('avr-gcc')
     build = `./config.guess`.chomp
     system "./configure", "--build=#{build}", "--prefix=#{prefix}", "--host=avr"
     system "make install"

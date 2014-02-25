@@ -12,7 +12,7 @@ class AvrGcc < Formula
   url 'http://ftp.gnu.org/gnu/gcc/gcc-4.7.2/gcc-4.7.2.tar.bz2'
   sha1 'a464ba0f26eef24c29bcd1e7489421117fb9ee35'
 
-  depends_on 'larsimmisch/avr/avr-binutils'
+  depends_on 'avr-binutils'
   depends_on 'gmp'
   depends_on 'libmpc'
   depends_on 'mpfr'
@@ -27,6 +27,7 @@ class AvrGcc < Formula
     gmp = Formula.factory 'gmp'
     mpfr = Formula.factory 'mpfr'
     libmpc = Formula.factory 'libmpc'
+    avr_binutils = Formula.factory 'avr-binutils'
 
     # brew's build environment is in our way
     ENV.delete 'CFLAGS'
@@ -55,8 +56,8 @@ class AvrGcc < Formula
             # ...and the binaries...
             "--bindir=#{bin}",
             # This shouldn't be necessary
-            "--with-as=/usr/local/bin/avr-as",
-            "--with-ld=/usr/local/bin/avr-ld"
+            "--with-as=#{avr_binutils.bin}/avr-as",
+            "--with-ld=#{avr_binutils.bin}/avr-ld"
            ]
 
     # The C compiler is always built, C++ can be disabled
