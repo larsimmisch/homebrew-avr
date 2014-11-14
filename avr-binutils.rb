@@ -6,24 +6,23 @@ class AvrBinutils < Formula
   homepage 'http://www.gnu.org/software/binutils/binutils.html'
   sha1 '587fca86f6c85949576f4536a90a3c76ffc1a3e1'
 
-  option 'disable-libbfd', 'Disable installation of libbfd.'
+  option 'without-libbfd', 'Disable installation of libbfd.'
 
   def install
-
     if MacOS.version == :lion
       ENV['CC'] = ENV.cc
     end
 
-    ENV['CPPFLAGS'] = "-I#{include}"
+    args = %W[
+      --prefix=#{prefix}
+      --disable-debug
+      --disable-dependency-tracking
+      --target=avr
+      --disable-nls
+    ]
 
-    args = ["--prefix=#{prefix}",
-            "--infodir=#{info}",
-            "--mandir=#{man}",
-            "--disable-werror",
-            "--disable-nls"]
-
-    unless build.include? 'disable-libbfd'
-      Dir.chdir "bfd" do
+    if build.include? 'libbfd'
+      chdir "bfd" do
         ohai "building libbfd"
         system "./configure", "--enable-install-libbfd", *args
         system "make"
@@ -31,27 +30,26 @@ class AvrBinutils < Formula
       end
     end
 
-    # brew's build environment is in our way
-    ENV.delete 'CFLAGS'
-    ENV.delete 'CXXFLAGS'
-    ENV.delete 'LD'
-    ENV.delete 'CC'
-    ENV.delete 'CXX'
-
     if MacOS.version == :lion
       ENV['CC'] = ENV.cc
     end
 
-    system "./configure", "--target=avr", *args
+    mkdir "build" do
+      system "../configure", *args
+      system "make"
+      system "make install"
+    end
 
-    system "make"
-    system "make install"
+    # taken from the gcc formula...
+    # Even when suffixes are appended, the info pages conflict when
+    # install-info is run. TODO fix this.
+    info.rmtree
   end
 
-  def patches
-    # Support for -C in avr-size. See issue 
+  patch :p0 do
+    # Support for -C in avr-size. See issue
     # https://github.com/larsimmisch/homebrew-avr/issues/9
-    { :p0 => "https://gist.github.com/larsimmisch/4190960/raw/b36f3d6d086980006f097ae0acc80b3ada7bb7b1/avr-binutils-size.patch" }
+    url "https://gist.github.com/larsimmisch/4190960/raw/b36f3d6d086980006f097ae0acc80b3ada7bb7b1/avr-binutils-size.patch"
+    sha1 "b6d1ff7084b1f0a3fd2dee5383019ffb202e6c9a"
   end
-
 end
