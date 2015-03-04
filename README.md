@@ -15,7 +15,7 @@ Dependencies: 'gmp', 'libmpc', 'mpfr' will be installed with gcc.
 
 Installing Homebrew-avr Formulae
 --------------------------------
-Just `brew tap larsimmisch/avr` and then `brew install <formula>`.
+Just `brew tap larsimmisch/homebrew-avr` and then `brew install <formula>`.
 
 To install the entire AVR toolchain, do:
 `brew install avr-libc`
